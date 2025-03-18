@@ -61,3 +61,67 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 }
+/*
+ * using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ExamenPatrol : MonoBehaviour
+{
+    [SerializeField] private Transform pointA;
+    [SerializeField] private Transform pointB;
+    public float Speed = 5.0f;
+    private Vector3 target;
+
+    private void Start()
+    {
+        transform.position = pointA.position;
+        target = pointB.position;
+    }
+
+    private void Update()
+    {
+        MoveTowardsTarget();
+        CheckPatrolSwitch();
+        HandleMouseInput();
+    }
+
+    private void MoveTowardsTarget()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target, Speed * Time.deltaTime);
+    }
+
+    private void CheckPatrolSwitch()
+    {
+        if (Vector3.Distance(transform.position, target) < 0.1f)
+        {
+            target = target == pointA.position ? pointB.position : pointA.position;
+        }
+    }
+
+    private void HandleMouseInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 newPos = GetMouseWorldPosition();
+            pointA.position = newPos;
+            target = pointA.position;
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            Vector3 newPos = GetMouseWorldPosition();
+            pointB.position = newPos;
+            target = pointB.position;
+        }
+    }
+
+    private Vector3 GetMouseWorldPosition()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = Camera.main.nearClipPlane;
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+        return new Vector3(worldPosition.x, worldPosition.y, transform.position.z);
+    }
+}
+
+ */

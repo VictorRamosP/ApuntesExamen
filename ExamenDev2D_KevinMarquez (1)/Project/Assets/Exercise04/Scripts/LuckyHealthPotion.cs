@@ -10,15 +10,15 @@ public class LuckyHealthPotion: HealthPotion
     public int ExtraAmount;
     // TODO: Define and implement GetHealth(), overrides base class method
     // NOTE: Health ExtraAmount is only added to BaseAmount on (Random.value < ExtraProbability)
-     public override int GetHealth()
+    public override int GetHealth()
     {
-        if (Random.value > 1 - ExtraProbability)
+        if (Random.value < ExtraProbability)
         {
             Debug.Log("LUCKY!");
             return BaseAmount + ExtraAmount;
         }
 
-        Debug.Log("maybe next time..");
+        Debug.Log("Maybe next time..");
         return BaseAmount;
     }
 }
