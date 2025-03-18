@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     // TODO: Declare OnGameStarted and OnGameFinished Actions
-    
+    public static Action OnGameStarted;
+    public static Action<DeathCause> OnGameFinished;
+
     private float _timer;
     private float _gameTime = 5.0f;   // Seconds to death
     private bool _running;
@@ -16,11 +18,14 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         // TODO: Subscribe to OnDeath Action
+        DeathTrigger.OnDeath += EndGame;
     }
 
     private void OnDisable()
     {
         // TODO: Unsubscribe from OnDeath Action
+        DeathTrigger.OnDeath += EndGame;
+
     }
 
     void Update()
@@ -51,7 +56,7 @@ public class GameManager : MonoBehaviour
         _running = true;
 
         // TODO: Invoke OnGameStarted Action
-
+        OnGameStarted?.Invoke();
         StartCoroutine(StartTimer());
     }
 
@@ -73,5 +78,6 @@ public class GameManager : MonoBehaviour
         _dead = true;
 
         // TODO: Invoke OnGameFinished Action
+        OnGameFinished?.Invoke(cause);
     }
 }

@@ -9,15 +9,20 @@ public class DeathTrigger : MonoBehaviour
     DeathCause DeathCause;
 
     // TODO: Declare Action OnDeath
+    public static Acttion OnDeath;
 
     private void OnEnable()
     {
         // TODO: Subscribe to GameManager Actions
+        GameManager.OnGameStarted += OnGameStarted;
+        GameManager.OnGameFinished += OnGameFinished;
     }
 
     private void OnDisable()
     {
         // TODO: Unsubscribe from GameManager Actions
+        GameManager.OnGameStarted -= OnGameStarted;
+        GameManager.OnGameFinished -= OnGameFinished;
     }
 
     private void OnGameStarted()
@@ -38,6 +43,7 @@ public class DeathTrigger : MonoBehaviour
         if (other.tag == "Player")
         {
             // TODO: Invoke OnDeath Action with DeathCause parameter
+            OnDeath?.Invoke(DeathCause);
         }
     }
 }

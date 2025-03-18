@@ -14,11 +14,17 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         // TODO: Subscribe to GameManager Actions
+        GameManager.OnGameStarted += OnGameStarted;
+        GameManager.OnGameFinished += OnGameFinished;
+
     }
 
     private void OnDisable()
     {
         // TODO: Unsubscribe from GameManager Actions
+        GameManager.OnGameStarted -= OnGameStarted;
+        GameManager.OnGameFinished -= OnGameFinished;
+
     }
 
     private void OnGameFinished(DeathCause obj)
