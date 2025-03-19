@@ -21,9 +21,9 @@ public class Bullet : MonoBehaviour
         // WARNING: Enable OLD/NEW code as required for testing
 
         // OLD: NoPoolSpawner: Destroy object when out of visible area
-        Destroy(gameObject);
+        //Destroy(gameObject);
 
         // NEW: PoolSpawner: "Return" object to pool (deactivate)
-        //PoolManager.BackToPool(this.gameObject);
+        PoolManager.BackToPool(this.gameObject);
     }
 }
